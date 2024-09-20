@@ -74,7 +74,7 @@ def df_on_change(cpc_month_df):
         for key, value in updates.items():
             st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, key] = value
 
-def lead_to_deals_editor():
+def cost_budget_editor():
     if "cpc_month_df" not in st.session_state:
         st.session_state["cpc_month_df"] = cpc_month_df
     st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
@@ -122,6 +122,7 @@ cpc_month_df = pd.DataFrame(
 }
 )
 
+cost_budget_editor()
 
 
 cpc_month__edited_df = st.session_state["cpc_month_df"]
