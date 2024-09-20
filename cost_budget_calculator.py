@@ -92,7 +92,7 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
 
     conversions = expected_clicks * conversion_rate
     cost_per_conversion = upper_monthly_budget / conversions
-    limit = is_limited_by_search_volume(budget, cpc, ctr, searches)
+    limit = is_limited_by_search_volume(upper_monthly_budget, upper_cpc, ctr, upper_monthly_searches)
     return conversions, cost_per_conversion, limit
     
 def low_intent( cpc,monthly_budget, monthly_searches):
@@ -107,7 +107,7 @@ def low_intent( cpc,monthly_budget, monthly_searches):
     
     conversions = expected_clicks * conversion_rate
     cost_per_conversion = monthly_budget / conversions
-    limit = is_limited_by_search_volume(budget, cpc, ctr, searches)
+    limit = is_limited_by_search_volume(monthly_budget, cpc, ctr, monthly_searches)
     return conversions, cost_per_conversion , limit
     
 def df_on_change(cpc_month_df):
@@ -195,7 +195,7 @@ cpc_month__edited_df = st.session_state["cpc_month_df"]
 low_cpc = cpc_month__edited_df['Num'].iloc[0]
 low_month_cost = cpc_month__edited_df['Num'].iloc[1]
 low_monthly_searches = cpc_month__edited_df['Num'].iloc[2]
-low_conversion_cpc = low_intent(low_month_cost,low_cpc, 0.02, low_monthly_searches)
+low_conversion_cpc = low_intent(cpc,monthly_budget, monthly_searches)
 #is_limited_by_search_volume(budget, cpc, ctr, searches):
 lower_limit = low_conversion_cpc[2]
 
@@ -209,7 +209,7 @@ upper_cpc_month__edited_df = st.session_state["upper_cpc_month_df"]
 upper_cpc = upper_cpc_month__edited_df['Num'].iloc[0]
 upper_month_cost = upper_cpc_month__edited_df['Num'].iloc[1]
 upper_monthly_searches = upper_cpc_month__edited_df['Num'].iloc[2]
-upper_conversion_cpc = high_intent(upper_month_cost, upper_cpc,0.05 , upper_monthly_searches)
+upper_conversion_cpc = high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches)
 
 upper_limit = upper_conversion_cpc[2]
 
