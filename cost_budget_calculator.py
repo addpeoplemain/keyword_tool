@@ -31,7 +31,9 @@ def is_limited_by_search_volume(budget, cpc, ctr, searches):
     
     # Check if affordable clicks exceed the available clicks based on search volume
     if clicks_affordable > expected_clicks:
-        return True  # User is limited by search volume
+        limiting_searches = clicks_affordable / ctr
+        result = [True, limiting_searches]
+        return result # User is limited by search volume
     else:
         return False  # User is not limited by search volume
         
@@ -224,8 +226,8 @@ with col1:
     st.subheader("Lower Intent Keywords")
     st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 
-    if lower_limit == True:
-        st.info("You are being limited by the search volume for this keyword see below for explanation")
+    if lower_limit[0] == True:
+        st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {lower_limit[1] searches ")
         with st.expander(":information_source:"):
              st.markdown("""
 
