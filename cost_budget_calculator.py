@@ -116,25 +116,25 @@ st.title("Cost Per Click To Budget Calculator")
 
 cta_missing=[]
 
-st.subheader("CTA Selector")
-st.write("Are Any CTAS missing from the landing page ?")
-cta_check = st.radio(
-    "If any CTAs are missing please click yes",
-    ["Yes","No"],
-    captions=[
-        "Missing a CTA",
-        "No missing CTAs",
-    ],
-    index = 1,
-)
+#st.subheader("CTA Selector")
+#st.write("Are Any CTAS missing from the landing page ?")
+#cta_check = st.radio(
+#    "If any CTAs are missing please click yes",
+#    ["Yes","No"],
+#    captions=[
+#        "Missing a CTA",
+#        "No missing CTAs",
+#    ],
+#    index = 1,
+#)
 
-if cta_check =="No":
-    cta_missing.append("no")
-else:
-    cta_missing.append("yes")
+#if cta_check =="No":
+   # cta_missing.append("no")
+#else:
+    #cta_missing.append("yes")
 
-if cta_missing[0] =="yes":
-    st.warning("You have CTAS missing from your webpage you can improve your conversion rate. To see your possible conversion with no missing ctas select no")
+#if cta_missing[0] =="yes":
+   # st.warning("You have CTAS missing from your webpage you can improve your conversion rate. To see your possible conversion with no missing ctas select no")
     
 with stylable_container(
     key="cpc_monthly_budget",
