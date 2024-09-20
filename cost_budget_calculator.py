@@ -51,7 +51,7 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     conversions = expected_clicks * conversion_rate
     cost_per_conversion = upper_monthly_budget / conversions
     limit = is_limited_by_search_volume(upper_monthly_budget, upper_cpc, ctr, upper_monthly_searches)
-    return conversions, cost_per_conversion, is_limited,limit
+    return conversions, cost_per_conversion,limit
     
 def low_intent( cpc,monthly_budget, monthly_searches):
     ctr = 0.05  # 9% CTR
@@ -67,7 +67,7 @@ def low_intent( cpc,monthly_budget, monthly_searches):
     cost_per_conversion = monthly_budget / conversions
     limit = is_limited_by_search_volume(monthly_budget, cpc, ctr, monthly_searches)
     
-    return conversions, cost_per_conversion , is_limited , limit
+    return conversions, cost_per_conversion , limit
     
 def df_on_change(cpc_month_df):
     state = st.session_state["df_editor"]
