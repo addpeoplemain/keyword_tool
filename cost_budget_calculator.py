@@ -8,6 +8,7 @@ from streamlit import session_state
 from streamlit_extras.app_logo import add_logo
 from streamlit_extras.stylable_container import stylable_container 
 
+st.set_page_config(initial_sidebar_state="auto", page_title="Cost Budget Calculator", page_icon="👋", layout="centered", menu_items=None)
 
 def spend_per_conversion_with_condition(cpc, monthly_budget, monthly_searches, cta_missing):
     # Constant Conversion Rate
