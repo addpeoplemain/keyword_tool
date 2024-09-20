@@ -136,9 +136,17 @@ else:
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing from your webpage you can improve your conversion rate. To see your possible conversion with no missing ctas select no")
     
-
-st.subheader("CPC & Monthly Budget")
-st.write("Please enter monthly budget and cost per click")
+with stylable_container(
+    key="cpc_monthly_budget",
+    css_styles="""
+        {
+            margin: auto;
+            width: 50%;
+        }
+    """,
+):
+    st.subheader("CPC & Monthly Budget")
+    st.write("Please enter monthly budget and cost per click")
 rows = st.columns(2)
 
 cpc_month_df = pd.DataFrame(
