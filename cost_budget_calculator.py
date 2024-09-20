@@ -122,10 +122,7 @@ cpc_month_df = pd.DataFrame(
 }
 )
 
-col1,col2 = st.columns(2)
 
-col1.lead_to_deals_editor()
-col2.lead_to_deals_editor()
 
 cpc_month__edited_df = st.session_state["cpc_month_df"]
 cpc = cpc_month__edited_df['Num'].iloc[0]
