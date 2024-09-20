@@ -123,7 +123,7 @@ cpc_month_df = pd.DataFrame(
     "Num": [1.50, 1.50,10],
 }
 )
-rows[1].lower_month_df = pd.DataFrame(
+lower_month_df = pd.DataFrame(
 {
     "Type": ["Lower Cost Per Click","Monthly Budget","Monthly Searches"],
     "Num": [1.50, 1.50,10],
