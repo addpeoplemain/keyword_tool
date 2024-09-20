@@ -195,7 +195,7 @@ cpc_month__edited_df = st.session_state["cpc_month_df"]
 low_cpc = cpc_month__edited_df['Num'].iloc[0]
 low_month_cost = cpc_month__edited_df['Num'].iloc[1]
 low_monthly_searches = cpc_month__edited_df['Num'].iloc[2]
-low_conversion_cpc = low_intent(cpc,monthly_budget, monthly_searches)
+low_conversion_cpc = low_intent(low_cpc,monthly_budget, monthly_searches)
 #is_limited_by_search_volume(budget, cpc, ctr, searches):
 lower_limit = low_conversion_cpc[2]
 
