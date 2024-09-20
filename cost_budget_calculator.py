@@ -66,7 +66,22 @@ def spend_per_conversion_with_condition(cpc, monthly_budget, monthly_searches, c
   
     return conversions, cost_per_conversion
 
-
+def high_intent(upper_monthly_budget, upper_cpc, upper_monthly_searches):
+    CTR = 0.09  # 9% CTR
+    conversion_rate = 0.05  # 5% conversion rate
+    clicks = monthly_searches * CTR
+    conversions = clicks * conversion_rate
+    cost_per_conversion = monthly_budget / conversions
+    return conversions, cost_per_conversion
+    
+def low_intent(monthly_budget, cpc, monthly_searches):
+    CTR = 0.05  # 9% CTR
+    conversion_rate = 0.02  # 5% conversion rate
+    clicks = monthly_searches * CTR
+    conversions = clicks * conversion_rate
+    cost_per_conversion = monthly_budget / conversions
+    return conversions, cost_per_conversion
+    
 def df_on_change(cpc_month_df):
     state = st.session_state["df_editor"]
     for index, updates in state["edited_rows"].items():
@@ -116,25 +131,6 @@ st.title("Cost Per Click To Budget Calculator")
 
 cta_missing=["no"]
 
-#st.subheader("CTA Selector")
-#st.write("Are Any CTAS missing from the landing page ?")
-#cta_check = st.radio(
-#    "If any CTAs are missing please click yes",
-#    ["Yes","No"],
-#    captions=[
-#        "Missing a CTA",
-#        "No missing CTAs",
-#    ],
-#    index = 1,
-#)
-
-#if cta_check =="No":
-   # cta_missing.append("no")
-#else:
-    #cta_missing.append("yes")
-
-#if cta_missing[0] =="yes":
-   # st.warning("You have CTAS missing from your webpage you can improve your conversion rate. To see your possible conversion with no missing ctas select no")
     
 with stylable_container(
     key="cpc_monthly_budget",
@@ -166,24 +162,37 @@ upper_cpc_month_df = pd.DataFrame(
 #lower value keyword calculation
 cost_budget_editor()
 
-#lower value keyword calculation
+#lower value intent  keyword calculation
 cpc_month__edited_df = st.session_state["cpc_month_df"]
-cpc = cpc_month__edited_df['Num'].iloc[0]
-month_cost = cpc_month__edited_df['Num'].iloc[1]
-monthly_searches = cpc_month__edited_df['Num'].iloc[2]
-conversion_cpc = spend_per_conversion_with_condition(cpc, month_cost,monthly_searches, cta_missing)
-rounded_cpc= round(cpc,3)
-rounded_month_cost = round(month_cost,3)
-rounded_conversions_cpc_0 = round(conversion_cpc[0],2)
-rounded_conversions_cpc_1 = round(conversion_cpc[1],2)
+low_cpc = cpc_month__edited_df['Num'].iloc[0]
+low_month_cost = cpc_month__edited_df['Num'].iloc[1]
+low_monthly_searches = cpc_month__edited_df['Num'].iloc[2]
+low_conversion_cpc = low_intent(low_cpc, low_month_cost,low_monthly_searches)
+
+rounded_cpc= round(low_cpc,3)
+rounded_month_cost = round(low_month_cost,3)
+rounded_conversions_cpc_0 = round(low_conversion_cpc[0],2)
+rounded_conversions_cpc_1 = round(low_conversion_cpc[1],2)
+
+#upper value intent  keyword calculation
+upper_cpc_month__edited_df = st.session_state["upper_cpc_month_df"]
+upper_cpc = upper_cpc_month__edited_df['Num'].iloc[0]
+upper_month_cost = upper_cpc_month__edited_df['Num'].iloc[1]
+upper_monthly_searches = upper_cpc_month__edited_df['Num'].iloc[2]
+upper_conversion_cpc = high_intent(upper_cpc, upper_month_cost,upper_monthly_searches)
+
+upper_rounded_cpc= round(upper_cpc,3)
+upper_rounded_month_cost = round(upper_month_cost,3)
+upper_rounded_conversions_cpc_0 = round(upper_conversion_cpc[0],2)
+upper_rounded_conversions_cpc_1 = round(upper_conversion_cpc[1],2)
 
 col1,col2 = st.columns(2)
 with col1:
-    st.subheader("Lower Value Keywords")
+    st.subheader("Lower Intent Keywords")
     st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 with col2:
-    st.subheader("Upper Value Keywords")
-    st.info(f"With a cost per click of  £calc needed  and a monthly budget of £ calc needed  You are expected to receive calc needed  conversions with a cost per conversion of £calc needed ")
+    st.subheader("HIgh Intent Keywords")
+    st.info(f"With a cost per click of  £calc needed  and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive {upper_rounded_conversions_cpc_0} conversions with a cost per conversion of £{upper_rounded_conversions_cpc_1}")
 
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing to see the cpc and conversions you could be receiving select no")
