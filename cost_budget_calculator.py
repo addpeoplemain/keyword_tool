@@ -160,8 +160,10 @@ low_month_cost = cpc_month__edited_df['Num'].iloc[1]
 low_monthly_searches = cpc_month__edited_df['Num'].iloc[2]
 low_conversion_cpc = low_intent(low_cpc,low_month_cost, low_monthly_searches)
 #is_limited_by_search_volume(budget, cpc, ctr, searches):
-lower_limit_true_false = low_conversion_cpc[2]
-lower_limit_score = low_conversion_cpc[3]
+lower_limit_true_false =0
+if low_conversion_cpc[2] == True:
+    lower_limit_true_false = 1
+    lower_limit_score = low_conversion_cpc[3]
 
 rounded_cpc= round(low_cpc,3)
 rounded_month_cost = round(low_month_cost,3)
@@ -188,7 +190,7 @@ with col1:
     st.subheader("Lower Intent Keywords")
     st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 
-    if lower_limit_true_false == True:
+    if lower_limit_true_false == 1:
         st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {lower_limit_score} searches ")
         with st.expander(":information_source:"):
              st.markdown("""
