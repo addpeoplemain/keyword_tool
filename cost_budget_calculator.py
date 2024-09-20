@@ -73,7 +73,7 @@ def df_on_change(cpc_month_df):
         st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, "Complete"] = True
         for key, value in updates.items():
             st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, key] = value
-def df_on_change_upper(upper_cpc_month_df)
+def df_on_change_upper(upper_cpc_month_df):
     upper_state = st.session_state["df_editor"]
     for index, updates in state["edited_rows"].items():
         st.session_state["upper_cpc_month_df"].loc[st.session_state["upper_cpc_month_df"].index == index, "Complete"] = True
