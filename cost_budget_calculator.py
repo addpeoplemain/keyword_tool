@@ -209,7 +209,7 @@ upper_cpc_month__edited_df = st.session_state["upper_cpc_month_df"]
 upper_cpc = upper_cpc_month__edited_df['Num'].iloc[0]
 upper_month_cost = upper_cpc_month__edited_df['Num'].iloc[1]
 upper_monthly_searches = upper_cpc_month__edited_df['Num'].iloc[2]
-upper_conversion_cpc = high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches)
+upper_conversion_cpc = high_intent(upper_cpc, upper_month_cost , upper_monthly_searches)
 
 upper_limit = upper_conversion_cpc[2]
 
