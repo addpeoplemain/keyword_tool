@@ -115,9 +115,17 @@ if cta_missing[0] =="yes":
 
 st.subheader("CPC & Monthly Budget")
 st.write("Please enter monthly budget and cost per click")
-cpc_month_df = pd.DataFrame(
+rows = st.columns(2)
+
+rows[0].cpc_month_df = pd.DataFrame(
 {
     "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
+    "Num": [1.50, 1.50,10],
+}
+)
+rows[1].lower_month_df = pd.DataFrame(
+{
+    "Type": ["Lower Cost Per Click","Monthly Budget","Monthly Searches"],
     "Num": [1.50, 1.50,10],
 }
 )
