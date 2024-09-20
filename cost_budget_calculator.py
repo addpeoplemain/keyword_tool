@@ -77,16 +77,18 @@ def df_on_change(cpc_month_df):
 def cost_budget_editor():
     if "cpc_month_df" not in st.session_state:
         st.session_state["cpc_month_df"] = cpc_month_df
-    st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
-        column_config={
-            "Type": st.column_config.Column(
-                disabled=True
-            )
-        },
-        disabled=["Complete"],
-        use_container_width=True,
-        hide_index=True
-    )
+    col1, col2, col3 = st.columns(3)
+    with col1:
+        st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
+            column_config={
+                "Type": st.column_config.Column(
+                    disabled=True
+                )
+            },
+            disabled=["Complete"],
+            use_container_width=True,
+            hide_index=True
+        )
     
 st.title("Cost Per Click To Budget Calculator")
 
@@ -120,12 +122,6 @@ rows = st.columns(2)
 cpc_month_df = pd.DataFrame(
 {
     "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
-    "Num": [1.50, 1.50,10],
-}
-)
-lower_month_df = pd.DataFrame(
-{
-    "Type": ["Lower Cost Per Click","Monthly Budget","Monthly Searches"],
     "Num": [1.50, 1.50,10],
 }
 )
