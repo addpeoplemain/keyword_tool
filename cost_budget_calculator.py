@@ -114,7 +114,7 @@ def cost_budget_editor():
     
 st.title("Cost Per Click To Budget Calculator")
 
-cta_missing=[]
+cta_missing=["no"]
 
 #st.subheader("CTA Selector")
 #st.write("Are Any CTAS missing from the landing page ?")
