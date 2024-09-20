@@ -9,6 +9,18 @@ from streamlit_extras.app_logo import add_logo
 from streamlit_extras.stylable_container import stylable_container 
 
 st.set_page_config(initial_sidebar_state="auto", page_title="Cost Budget Calculator", page_icon="👋", layout="centered", menu_items=None)
+with st.sidebar:
+    st.image("logo.png")
+    st.write("""
+                 
+         **Cost Budget Calculator 1.0**
+         
+         Cost Budget Application 1.0
+                 
+        
+
+            """
+         )
 
 def spend_per_conversion_with_condition(cpc, monthly_budget, monthly_searches, cta_missing):
     # Constant Conversion Rate
@@ -53,6 +65,28 @@ def spend_per_conversion_with_condition(cpc, monthly_budget, monthly_searches, c
  #   st.write(cost_per_conversion)
   
     return conversions, cost_per_conversion
+
+
+def df_on_change(cpc_month_df):
+    state = st.session_state["df_editor"]
+    for index, updates in state["edited_rows"].items():
+        st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, "Complete"] = True
+        for key, value in updates.items():
+            st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, key] = value
+
+def lead_to_deals_editor():
+    if "cpc_month_df" not in st.session_state:
+        st.session_state["cpc_month_df"] = cpc_month_df
+    st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
+        column_config={
+            "Type": st.column_config.Column(
+                disabled=True
+            )
+        },
+        disabled=["Complete"],
+        use_container_width=True,
+        hide_index=True
+    )
     
 st.title("Cost Per Click To Budget Calculator")
 
@@ -77,18 +111,6 @@ else:
 
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing from your webpage you can improve your conversion rate. To see your possible conversion with no missing ctas select no")
-#clickable_call = st.checkbox("Clickable Call")
-#clickable_email = st.checkbox("Clickable Email")
-#contact_form = st.checkbox("Contact Form")
-#cta_list = ["yes","no","no","no"]
-
-#if not clickable_call:
-  #  del cta_list[-1]
-#if not clickable_email:
-   # del cta_list[-1]
-
-#if not contact_form:
-   # del cta_list[-1]
     
 
 st.subheader("CPC & Monthly Budget")
@@ -99,39 +121,6 @@ cpc_month_df = pd.DataFrame(
     "Num": [1.50, 1.50,10],
 }
 )
-
-def df_on_change(cpc_month_df):
-    state = st.session_state["df_editor"]
-    for index, updates in state["edited_rows"].items():
-        st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, "Complete"] = True
-        for key, value in updates.items():
-            st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, key] = value
-
-def lead_to_deals_editor():
-    if "cpc_month_df" not in st.session_state:
-        st.session_state["cpc_month_df"] = cpc_month_df
-    st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
-        column_config={
-            "Type": st.column_config.Column(
-                disabled=True
-            )
-        },
-        disabled=["Complete"],
-        use_container_width=True,
-        hide_index=True
-    )
-with st.sidebar:
-    st.image("logo.png")
-    st.write("""
-                 
-         **Cost Budget Calculator 1.0**
-         
-         Onboarding Application 1.0
-                 
-        
-
-            """
-         )
 
 
 lead_to_deals_editor()
