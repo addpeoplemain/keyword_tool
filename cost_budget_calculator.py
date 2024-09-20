@@ -177,8 +177,8 @@ rounded_cpc= round(cpc,3)
 rounded_month_cost = round(month_cost,3)
 rounded_conversions_cpc_0 = round(conversion_cpc[0],2)
 rounded_conversions_cpc_1 = round(conversion_cpc[1],2)
-
-#st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
+st.subheader("Lower Value Keywords")
+st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing to see the cpc and conversions you could be receiving select no")
