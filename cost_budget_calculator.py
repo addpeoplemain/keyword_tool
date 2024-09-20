@@ -163,22 +163,27 @@ upper_cpc_month_df = pd.DataFrame(
 }
 )
 
+#lower value keyword calculation
 cost_budget_editor()
 
-
+#lower value keyword calculation
 cpc_month__edited_df = st.session_state["cpc_month_df"]
 cpc = cpc_month__edited_df['Num'].iloc[0]
 month_cost = cpc_month__edited_df['Num'].iloc[1]
 monthly_searches = cpc_month__edited_df['Num'].iloc[2]
-
-
 conversion_cpc = spend_per_conversion_with_condition(cpc, month_cost,monthly_searches, cta_missing)
 rounded_cpc= round(cpc,3)
 rounded_month_cost = round(month_cost,3)
 rounded_conversions_cpc_0 = round(conversion_cpc[0],2)
 rounded_conversions_cpc_1 = round(conversion_cpc[1],2)
-st.subheader("Lower Value Keywords")
-st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
+
+col1,col2 = st.columns(2)
+with col1:
+    st.subheader("Lower Value Keywords")
+    st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
+with col2:
+    st.subheader("Upper Value Keywords")
+    st.info(f"With a cost per click of  £calc needed  and a monthly budget of £ calc needed  You are expected to receive calc needed  conversions with a cost per conversion of £calc needed ")
 
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing to see the cpc and conversions you could be receiving select no")
