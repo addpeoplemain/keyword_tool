@@ -37,49 +37,6 @@ def is_limited_by_search_volume(budget, cpc, ctr, searches):
     else:
         return False  # User is not limited by search volume
         
-def spend_per_conversion_with_condition(cpc, monthly_budget, monthly_searches, cta_missing):
-    # Constant Conversion Rate
-    ctr = 0.05  # 5% Click-Through Rate
-    conversion_rate = 0.02  # 2% Conversion Rate
-    #yes_no_count = 1
-
-    # Calculate the number of clicks that can be afforded based on the monthly budget and CPC
-    clicks_affordable = monthly_budget / cpc
-    
-    # Calculate the number of clicks generated from the budget (assuming every dollar spent gives a click)
-    clicks = min(clicks_affordable, monthly_searches * ctr)
-    
-    # Calculate the number of conversions (leads)
-    conversions = clicks * conversion_rate
-    additional_cost_no_cta = 0
-    total_budget = monthly_budget
-    # Count occurrences of 'no' in cta_list
-   
-    if cta_missing[0]=="yes":
-        # If 'no' was found, reduce total conversions by 25% for each 'no'
-        conversions = conversions * (1 - 0.25)  # Reduce conversions by 25% for each 'no'
-        additional_cost_no_cta = monthly_budget * (0.25)  # 25% additional cost if ctas missing 
-        
-        #total_budget = monthly_budget + additional_cost
-    else:
-        # If no 'no' in the list, keep the conversions and budget as is
-        total_budget = monthly_budget
-    
-    if conversions == 0:
-        return float('inf'), 0  # Return infinity for cost per conversion if no leads, and 0 for leads
-    
-    # Calculate the spend per conversion (cost per lead)
-    cost_per_conversion = (total_budget / conversions)+additional_cost_no_cta
-
-#    st.write("DEBUG MENU")
- #   st.write("Total Budget =")
- #   st.write(total_budget)
- #   st.write("conversions =")
- #   st.write(conversions)
- #   st.write("cost per conversion")
- #   st.write(cost_per_conversion)
-  
-    return conversions, cost_per_conversion
 
 def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     ctr = 0.09  # 9% CTR
@@ -95,7 +52,9 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     conversions = expected_clicks * conversion_rate
     cost_per_conversion = upper_monthly_budget / conversions
     limit = is_limited_by_search_volume(upper_monthly_budget, upper_cpc, ctr, upper_monthly_searches)
-    return conversions, cost_per_conversion, limit
+    is_limited = limit[0]
+    limit_hit = , limit[1]
+    return conversions, cost_per_conversion, is_limited,limit_hit 
     
 def low_intent( cpc,monthly_budget, monthly_searches):
     ctr = 0.05  # 9% CTR
@@ -110,7 +69,9 @@ def low_intent( cpc,monthly_budget, monthly_searches):
     conversions = expected_clicks * conversion_rate
     cost_per_conversion = monthly_budget / conversions
     limit = is_limited_by_search_volume(monthly_budget, cpc, ctr, monthly_searches)
-    return conversions, cost_per_conversion , limit
+    is_limited = limit[0]
+    limit_hit = , limit[1]
+    return conversions, cost_per_conversion , is_limited , limit_hit
     
 def df_on_change(cpc_month_df):
     state = st.session_state["df_editor"]
@@ -199,7 +160,8 @@ low_month_cost = cpc_month__edited_df['Num'].iloc[1]
 low_monthly_searches = cpc_month__edited_df['Num'].iloc[2]
 low_conversion_cpc = low_intent(low_cpc,low_month_cost, low_monthly_searches)
 #is_limited_by_search_volume(budget, cpc, ctr, searches):
-lower_limit = low_conversion_cpc[2]
+lower_limit_true_false = low_conversion_cpc[2]
+lower_limit_score = low_conversion_cpc[3]
 
 rounded_cpc= round(low_cpc,3)
 rounded_month_cost = round(low_month_cost,3)
