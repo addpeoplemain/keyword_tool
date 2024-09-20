@@ -89,7 +89,7 @@ def low_intent( cpc,monthly_budget, monthly_searches):
     clicks_affordable = monthly_budget / cpc
     
     # Calculate the number of clicks generated from the budget (assuming every dollar spent gives a click)
-    clicks = min(clicks_affordable, upper_monthly_searches * ctr)
+    clicks = min(clicks_affordable, monthly_searches * ctr)
     
     conversions = clicks * conversion_rate
     cost_per_conversion = monthly_budget / conversions
