@@ -73,8 +73,9 @@ def df_on_change(cpc_month_df):
         st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, "Complete"] = True
         for key, value in updates.items():
             st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, key] = value
+            
 def df_on_change_upper(upper_cpc_month_df):
-    upper_state = st.session_state["df_editor"]
+    upper_state = st.session_state["df_editor_upper"]
     for index, updates in state["edited_rows"].items():
         st.session_state["upper_cpc_month_df"].loc[st.session_state["upper_cpc_month_df"].index == index, "Complete"] = True
         for key, value in updates.items():
@@ -98,7 +99,7 @@ def cost_budget_editor():
             hide_index=True
         )
     with col2:
-        st.data_editor(st.session_state["upper_cpc_month_df"], key="df_editor", on_change=df_on_change_upper, args=[upper_cpc_month_df],
+        st.data_editor(st.session_state["upper_cpc_month_df"], key="df_editor_upper", on_change=df_on_change_upper, args=[upper_cpc_month_df],
             column_config={
                 "Type": st.column_config.Column(
                     disabled=True
