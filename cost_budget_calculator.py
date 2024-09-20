@@ -92,7 +92,7 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
 
     conversions = expected_clicks * conversion_rate
     cost_per_conversion = upper_monthly_budget / conversions
-    limit is_limited_by_search_volume(budget, cpc, ctr, searches)
+    limit = is_limited_by_search_volume(budget, cpc, ctr, searches)
     return conversions, cost_per_conversion, limit
     
 def low_intent( cpc,monthly_budget, monthly_searches):
