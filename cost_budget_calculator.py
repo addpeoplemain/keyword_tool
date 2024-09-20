@@ -227,7 +227,7 @@ with col1:
     st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 
     if lower_limit[0] == True:
-        st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {lower_limit[1] searches ")
+        st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {lower_limit[1] searches} ")
         with st.expander(":information_source:"):
              st.markdown("""
 
