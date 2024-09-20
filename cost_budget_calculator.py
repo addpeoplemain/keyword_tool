@@ -73,13 +73,32 @@ def df_on_change(cpc_month_df):
         st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, "Complete"] = True
         for key, value in updates.items():
             st.session_state["cpc_month_df"].loc[st.session_state["cpc_month_df"].index == index, key] = value
+def df_on_change_upper(upper_cpc_month_df)
+    upper_state = st.session_state["df_editor"]
+    for index, updates in state["edited_rows"].items():
+        st.session_state["upper_cpc_month_df"].loc[st.session_state["upper_cpc_month_df"].index == index, "Complete"] = True
+        for key, value in updates.items():
+            st.session_state["upper_cpc_month_df"].loc[st.session_state["upper_cpc_month_df"].index == index, key] = value
 
 def cost_budget_editor():
     if "cpc_month_df" not in st.session_state:
         st.session_state["cpc_month_df"] = cpc_month_df
-    col1, col2, col3 = st.columns(3)
+    if "upper_cpc_month_df" not in st.session_state:
+        st.session_state["upper_cpc_month_df"] = upper_cpc_month_df
+    col1, col2 = st.columns(2)
     with col1:
         st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
+            column_config={
+                "Type": st.column_config.Column(
+                    disabled=True
+                )
+            },
+            disabled=["Complete"],
+            use_container_width=True,
+            hide_index=True
+        )
+    with col2:
+        st.data_editor(st.session_state["upper_cpc_month_df"], key="df_editor", on_change=df_on_change_upper, args=[upper_cpc_month_df],
             column_config={
                 "Type": st.column_config.Column(
                     disabled=True
@@ -120,6 +139,13 @@ st.write("Please enter monthly budget and cost per click")
 rows = st.columns(2)
 
 cpc_month_df = pd.DataFrame(
+{
+    "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
+    "Num": [1.50, 1.50,10],
+}
+)
+
+upper_cpc_month_df = pd.DataFrame(
 {
     "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
     "Num": [1.50, 1.50,10],
