@@ -88,7 +88,7 @@ def cost_budget_editor():
         st.session_state["upper_cpc_month_df"] = upper_cpc_month_df
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("lower keywords")
+        st.subheader("Lower Keywords")
         st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
             column_config={
                 "Type": st.column_config.Column(
@@ -100,7 +100,7 @@ def cost_budget_editor():
             hide_index=True
         )
     with col2:
-        st.subheader("upper keywords")
+        st.subheader("Upper Keywords")
         st.data_editor(st.session_state["upper_cpc_month_df"], key="df_editor_upper", on_change=df_on_change_upper, args=[upper_cpc_month_df],
             column_config={
                 "Type": st.column_config.Column(
