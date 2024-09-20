@@ -72,8 +72,10 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
 
     clicks = upper_monthly_searches * ctr
     
-    conversions = clicks * conversion_rate
-
+    clicks_affordable = upper_monthly_budget / upper_cpc
+    
+    # Calculate the number of clicks generated from the budget (assuming every dollar spent gives a click)
+    clicks = min(clicks_affordable, upper_monthly_searches * ctr)
 
     conversions = clicks * conversion_rate
     cost_per_conversion = upper_monthly_budget / conversions
@@ -84,6 +86,10 @@ def low_intent( cpc,monthly_budget, monthly_searches):
     conversion_rate = 0.02  # 5% conversion rate
     # Calculate the number of clicks generated from the budget (assuming every dollar spent gives a click)
     clicks = monthly_searches * ctr
+    clicks_affordable = monthly_budget / cpc
+    
+    # Calculate the number of clicks generated from the budget (assuming every dollar spent gives a click)
+    clicks = min(clicks_affordable, upper_monthly_searches * ctr)
     
     conversions = clicks * conversion_rate
     cost_per_conversion = monthly_budget / conversions
