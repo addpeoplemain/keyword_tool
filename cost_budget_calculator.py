@@ -67,7 +67,7 @@ def spend_per_conversion_with_condition(cpc, monthly_budget, monthly_searches, c
     return conversions, cost_per_conversion
 
 def high_intent(upper_monthly_budget, upper_cpc, upper_monthly_searches):
-    CTR = 0.09  # 9% CTR
+    ctr = 0.09  # 9% CTR
     conversion_rate = 0.05  # 5% conversion rate
 
        # Calculate the number of clicks that can be afforded based on the monthly budget and CPC
@@ -83,7 +83,7 @@ def high_intent(upper_monthly_budget, upper_cpc, upper_monthly_searches):
     return conversions, cost_per_conversion
     
 def low_intent(monthly_budget, cpc, monthly_searches):
-    CTR = 0.05  # 9% CTR
+    ctr = 0.05  # 9% CTR
     conversion_rate = 0.02  # 5% conversion rate
 
        # Calculate the number of clicks that can be afforded based on the monthly budget and CPC
