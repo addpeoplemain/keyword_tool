@@ -225,7 +225,7 @@ with col1:
 
     if lower_limit == True:
         st.info("You are being limited by the search volume for this keyword see below for explanation")
-         with st.expander(":information_source:"):
+        with st.expander(":information_source:"):
              st.markdown("""
 
              The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions. Here's why:
