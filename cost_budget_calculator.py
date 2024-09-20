@@ -53,7 +53,7 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     cost_per_conversion = upper_monthly_budget / conversions
     limit = is_limited_by_search_volume(upper_monthly_budget, upper_cpc, ctr, upper_monthly_searches)
     is_limited = limit[0]
-    limit_hit = , limit[1]
+    limit_hit = limit[1]
     return conversions, cost_per_conversion, is_limited,limit_hit 
     
 def low_intent( cpc,monthly_budget, monthly_searches):
@@ -70,7 +70,7 @@ def low_intent( cpc,monthly_budget, monthly_searches):
     cost_per_conversion = monthly_budget / conversions
     limit = is_limited_by_search_volume(monthly_budget, cpc, ctr, monthly_searches)
     is_limited = limit[0]
-    limit_hit = , limit[1]
+    limit_hit = limit[1]
     return conversions, cost_per_conversion , is_limited , limit_hit
     
 def df_on_change(cpc_month_df):
