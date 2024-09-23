@@ -200,7 +200,7 @@ with col1:
     st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 
     if low_conversion_cpc[2] == True:
-        search_limit = limited_by_low(low_month_cost, low_cpc, low_monthly_searches)
+        search_limit = round(limited_by_low(low_month_cost, low_cpc, low_monthly_searches),2)
         st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {search_limit} searches ")
         with st.expander(":information_source:"):
              st.markdown("""
@@ -212,7 +212,7 @@ with col2:
     st.subheader("High Intent Keywords")
     st.info(f"With a cost per click of  £{upper_rounded_cpc}  and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive {upper_rounded_conversions_cpc_0} conversions with a cost per conversion of £{upper_rounded_conversions_cpc_1}")
     if upper_conversion_cpc[2] == True:
-        search_limit = limited_by_high(upper_month_cost, upper_cpc, upper_monthly_searches)
+        search_limit = round(limited_by_high(upper_month_cost, upper_cpc, upper_monthly_searches),2)
         st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {search_limit} searches ")
         with st.expander(":information_source:"):
              st.markdown("""
