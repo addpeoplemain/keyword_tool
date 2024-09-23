@@ -73,10 +73,10 @@ def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     return conversions, cost_per_conversion,limit
     
 def low_intent( cpc,monthly_budget, monthly_searches):
-    ctr = 0.05  # 9% CTR
-    conversion_rate = 0.02  # 5% conversion rate
+    ctr = 0.05  # 5% CTR
+    conversion_rate = 0.02  # 2% conversion rate
    # Calculate clicks based on CTR and monthly searches
-    potential_clicks = monthly_budget * ctr
+    potential_clicks = monthly_searches * ctr
     
     # Calculate the number of clicks affordable based on the budget and CPC
     clicks_affordable = monthly_budget / cpc
@@ -178,7 +178,7 @@ low_month_cost = cpc_month__edited_df['Num'].iloc[1]
 low_monthly_searches = cpc_month__edited_df['Num'].iloc[2]
 low_conversion_cpc = low_intent(low_cpc,low_month_cost, low_monthly_searches)
 #is_limited_by_search_volume(budget, cpc, ctr, searches):
-  
+#return conversions, cost_per_conversion , limit
 
 rounded_cpc= round(low_cpc,3)
 rounded_month_cost = round(low_month_cost,3)
