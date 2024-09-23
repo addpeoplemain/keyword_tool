@@ -151,14 +151,14 @@ rows = st.columns(2)
 cpc_month_df = pd.DataFrame(
 {
     "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
-    "Num": [1.50, 1.50,10000],
+    "Num": [0.001, 0.001,10000],
 }
 )
 
 upper_cpc_month_df = pd.DataFrame(
 {
     "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
-    "Num": [1.50, 1.50,10],
+    "Num": [0.001, 0.001,10000],
 }
 )
 
