@@ -205,7 +205,7 @@ col1,col2 = st.columns(2)
 with col1:
     st.subheader("Lower Intent Keywords")
    
-    if lower_rounded_conversions_cpc_0 >= 1:
+    if rounded_conversions_cpc_0 >= 1:
         st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
         if low_conversion_cpc[2] == True:
             search_limit = round(limited_by_low(low_month_cost, low_cpc, low_monthly_searches),2)
