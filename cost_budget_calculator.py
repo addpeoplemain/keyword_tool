@@ -217,7 +217,7 @@ with col1:
 
                 """)
     else:
-        st.warning(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive 0 conversions. You will need to increase your budget")
+        st.warning(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions. You will need to increase your budget")
         
 with col2:
     st.subheader("High Intent Keywords")
@@ -234,6 +234,6 @@ with col2:
 
                 """)
     else:
-        st.warning(f"With a cost per click of  £{upper_rounded_cpc} and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive 0 conversions. You will need to increase your budget")
+        st.warning(f"With a cost per click of  £{upper_rounded_cpc} and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive {upper_rounded_conversions_cpc_0} conversions. You will need to increase your budget")
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing to see the cpc and conversions you could be receiving select no")
