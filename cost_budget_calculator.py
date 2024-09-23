@@ -233,7 +233,7 @@ with col2:
                  The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions.
 
                 """)
-        else:
-            st.warning(f"With a cost per click of  £{upper_rounded_cpc} and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive 0 conversions. You will need to increase your budget")
+    else:
+        st.warning(f"With a cost per click of  £{upper_rounded_cpc} and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive 0 conversions. You will need to increase your budget")
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing to see the cpc and conversions you could be receiving select no")
