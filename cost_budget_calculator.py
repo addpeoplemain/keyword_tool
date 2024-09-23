@@ -31,11 +31,27 @@ def is_limited_by_search_volume(budget, cpc, ctr, searches):
     
     # Check if affordable clicks exceed the available clicks based on search volume
     if clicks_affordable > expected_clicks:
-        limiting_searches = clicks_affordable / ctr
-        return True , limiting_searches# User is limited by search volume
+        return True  # User is limited by search volume
     else:
         return False  # User is not limited by search volume
-        
+
+def limited_by_low(budget,cpc, searches):
+    ctr= 0.02
+    clicks_affordable = budget / cpc
+    
+    # Calculate the expected clicks based on CTR and monthly searches
+    expected_clicks = ctr * searches
+    limiting_searches = clicks_affordable / ctr
+    return limiting_searches
+
+def limited_by_high(budget,cpc, searches):
+    ctr= 0.09
+    clicks_affordable = budget / cpc
+    
+    # Calculate the expected clicks based on CTR and monthly searches
+    expected_clicks = ctr * searches
+    limiting_searches = clicks_affordable / ctr
+    return limiting_searches
 
 def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     ctr = 0.09  # 9% CTR
@@ -183,20 +199,21 @@ with col1:
     st.subheader("Lower Intent Keywords")
     st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
 
-   # if low_conversion_cpc[2][0] == True:
-     #   st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {low_conversion_cpc[2][1]} searches ")
-    #    with st.expander(":information_source:"):
-      #       st.markdown("""
+    if low_conversion_cpc[2] == True:
+        search_limit = limited_by(low_month_cost, low_cpc, searches)
+        st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {search_limit} searches ")
+        with st.expander(":information_source:"):
+             st.markdown("""
 
-      #       The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions. Here's why:
+             The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions. Here's why:
 
-       #     Limited by search volume: In your case, even though you've increased the budget from $300 to $600, the number of available clicks is limited by the search volume (10,000 searches) and your click-through rate (CTR) of 9%. This gives you a maximum of 900 clicks, regardless of how much budget you allocate. Since you already hit the maximum number of clicks at the $300 budget, increasing your budget to $600 does not give you any more conversions.
-#
-       #     No increase in conversions: Your conversion rate is 5%, and with the limited number of clicks (900), you generate 45 conversions. When you increase your budget, you’re not getting more clicks or conversions—just paying more for the same result.
+            Limited by search volume: In your case, even though you've increased the budget from $300 to $600, the number of available clicks is limited by the search volume (10,000 searches) and your click-through rate (CTR) of 9%. This gives you a maximum of 900 clicks, regardless of how much budget you allocate. Since you already hit the maximum number of clicks at the $300 budget, increasing your budget to $600 does not give you any more conversions.
 
-         #   Higher budget, same outcome: With a budget of $600 and the same 45 conversions, the cost per conversion will rise 
+            No increase in conversions: Your conversion rate is 5%, and with the limited number of clicks (900), you generate 45 conversions. When you increase your budget, you’re not getting more clicks or conversions—just paying more for the same result.
 
-          #  """)
+            Higher budget, same outcome: With a budget of $600 and the same 45 conversions, the cost per conversion will rise 
+
+            """)
 with col2:
     st.subheader("High Intent Keywords")
     st.info(f"With a cost per click of  £{upper_rounded_cpc}  and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive {upper_rounded_conversions_cpc_0} conversions with a cost per conversion of £{upper_rounded_conversions_cpc_1}")
