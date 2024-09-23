@@ -56,16 +56,19 @@ def limited_by_high(budget,cpc, searches):
 def high_intent(upper_cpc, upper_monthly_budget, upper_monthly_searches):
     ctr = 0.09  # 9% CTR
     conversion_rate = 0.05  # 5% conversion rate
-
-    clicks = upper_monthly_searches * ctr
     
+    # Calculate clicks based on CTR and monthly searches
+    potential_clicks = upper_monthly_searches * ctr
+    
+    # Calculate the number of clicks affordable based on the budget and CPC
     clicks_affordable = upper_monthly_budget / upper_cpc
     
-  # Calculate expected clicks based on click through rate
-    expected_clicks = upper_monthly_searches * ctr
-
-    conversions = expected_clicks * conversion_rate
-    cost_per_conversion = upper_monthly_budget / conversions
+    # Use the minimum of clicks affordable and potential clicks
+    actual_clicks = min(clicks_affordable, potential_clicks)
+    
+    # Calculate conversions
+    conversions = actual_clicks * conversion_rate
+    cost_per_conversion = monthly_budget / conversions
     limit = is_limited_by_search_volume(upper_monthly_budget, upper_cpc, ctr, upper_monthly_searches)
     return conversions, cost_per_conversion,limit
     
