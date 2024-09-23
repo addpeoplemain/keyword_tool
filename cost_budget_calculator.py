@@ -222,7 +222,7 @@ with col1:
 with col2:
     st.subheader("High Intent Keywords")
 
-     if upper_rounded_conversions_cpc_0 >= 1:
+    if upper_rounded_conversions_cpc_0 >= 1:
         st.info(f"With a cost per click of  £{upper_rounded_cpc}  and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive {upper_rounded_conversions_cpc_0} conversions with a cost per conversion of £{upper_rounded_conversions_cpc_1}")
         if upper_conversion_cpc[2] == True:
             search_limit = round(limited_by_high(upper_month_cost, upper_cpc, upper_monthly_searches),2)
