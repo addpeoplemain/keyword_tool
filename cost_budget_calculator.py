@@ -106,7 +106,7 @@ def cost_budget_editor():
         st.session_state["upper_cpc_month_df"] = upper_cpc_month_df
     col1, col2 = st.columns(2)
     with col1:
-        st.subheader("Lower Keywords")
+        st.subheader("Low Intent Keywords")
         st.data_editor(st.session_state["cpc_month_df"], key="df_editor", on_change=df_on_change, args=[cpc_month_df],
             column_config={
                 "Type": st.column_config.Column(
@@ -118,7 +118,7 @@ def cost_budget_editor():
             hide_index=True
         )
     with col2:
-        st.subheader("Upper Keywords")
+        st.subheader("High Intent Keywords")
         st.data_editor(st.session_state["upper_cpc_month_df"], key="df_editor_upper", on_change=df_on_change_upper, args=[upper_cpc_month_df],
             column_config={
                 "Type": st.column_config.Column(
@@ -151,7 +151,7 @@ rows = st.columns(2)
 cpc_month_df = pd.DataFrame(
 {
     "Type": ["Cost Per Click","Monthly Budget","Monthly Searches"],
-    "Num": [1.50, 1.50,10],
+    "Num": [1.50, 1.50,10000],
 }
 )
 
@@ -211,6 +211,14 @@ with col1:
 with col2:
     st.subheader("High Intent Keywords")
     st.info(f"With a cost per click of  £{upper_rounded_cpc}  and a monthly budget of £{upper_rounded_month_cost}  You are expected to receive {upper_rounded_conversions_cpc_0} conversions with a cost per conversion of £{upper_rounded_conversions_cpc_1}")
+    if upper_conversion_cpc[2] == True:
+        search_limit = limited_by_high(upper_month_cost, upper_cpc, upper_monthly_searches)
+        st.info(f"You are being limited by the search volume for this keyword ton increase conversion you would need more than {search_limit} searches ")
+        with st.expander(":information_source:"):
+             st.markdown("""
 
+             The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions.
+
+            """)
 if cta_missing[0] =="yes":
     st.warning("You have CTAS missing to see the cpc and conversions you could be receiving select no")
