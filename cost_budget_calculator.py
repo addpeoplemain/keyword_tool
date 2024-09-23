@@ -205,13 +205,7 @@ with col1:
         with st.expander(":information_source:"):
              st.markdown("""
 
-             The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions. Here's why:
-
-            Limited by search volume: In your case, even though you've increased the budget from $300 to $600, the number of available clicks is limited by the search volume (10,000 searches) and your click-through rate (CTR) of 9%. This gives you a maximum of 900 clicks, regardless of how much budget you allocate. Since you already hit the maximum number of clicks at the $300 budget, increasing your budget to $600 does not give you any more conversions.
-
-            No increase in conversions: Your conversion rate is 5%, and with the limited number of clicks (900), you generate 45 conversions. When you increase your budget, you’re not getting more clicks or conversions—just paying more for the same result.
-
-            Higher budget, same outcome: With a budget of $600 and the same 45 conversions, the cost per conversion will rise 
+             The cost per conversion increases when you raise your budget because you are paying more without gaining additional conversions.
 
             """)
 with col2:
