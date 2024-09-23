@@ -162,8 +162,7 @@ upper_cpc_month_df = pd.DataFrame(
 }
 )
 
-#lower value keyword calculation
-cost_budget_editor()
+
 
 #lower value intent  keyword calculation
 cpc_month__edited_df = st.session_state["cpc_month_df"]
@@ -193,6 +192,8 @@ upper_rounded_month_cost = round(upper_month_cost,3)
 upper_rounded_conversions_cpc_0 = round(upper_conversion_cpc[0],2)
 upper_rounded_conversions_cpc_1 = round(upper_conversion_cpc[1],2)
 
+#lower value keyword calculation
+cost_budget_editor()
 
 col1,col2 = st.columns(2)
 with col1:
