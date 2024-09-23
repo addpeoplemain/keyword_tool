@@ -204,7 +204,7 @@ upper_rounded_conversions_cpc_1 = round(upper_conversion_cpc[1],2)
 col1,col2 = st.columns(2)
 with col1:
     st.subheader("Lower Intent Keywords")
-    st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
+   
     if upper_rounded_conversions_cpc_0 >= 1:
         st.info(f"With a cost per click of  £{rounded_cpc} and a monthly budget of £{rounded_month_cost}  You are expected to receive {rounded_conversions_cpc_0} conversions with a cost per conversion of £{rounded_conversions_cpc_1}")
         if low_conversion_cpc[2] == True:
